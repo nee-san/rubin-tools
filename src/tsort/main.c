@@ -113,7 +113,6 @@ struct array {
 
 static void nodes_init(struct ohash *);
 static struct node *node_lookup(struct ohash *, const char *, const char *);
-// static __dead void usage(void);
 static void usage(void);
 static struct node *new_node(const char *, const char *);
 
@@ -144,9 +143,6 @@ static void heapify(struct array *, int);
 static struct node *dequeue(struct array *);
 static void enqueue(struct array *, struct node *);
 
-// compat
-#define pledge(request, paths) 0 /* linux doesn't have pledge */
-
 static void *hash_calloc(size_t, size_t, void *);
 static void hash_free(void *, void *);
 static void* entry_alloc(size_t, void *);
@@ -160,6 +156,8 @@ static int tsort(struct ohash *);
 
 static int 		quiet_flag, long_flag,
 			warn_flag, hints_flag, verbose_flag;
+
+#define pledge(request, paths) 0 /* linux doesn't have pledge */
 
 int main(int, char *[]);
 
